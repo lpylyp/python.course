@@ -5,12 +5,11 @@ tyler = { "name": "Tyler", "homework": [0.0, 87.0, 75.0, 22.0], "quizzes": [0.0,
 #Створити список ( students ), що містить lloyd, alice, tyle
 students = [lloyd, alice, tyler]
 
-#print(students)
+
 
 
 #Для кожного студента надрукувати інформацію у читабельному форматі
 
-#for student in students:
 
 for name in students:
     print (name["name"])
@@ -23,8 +22,8 @@ for name in students:
 # float ( число з плаваючою точкою). Поділити total на кількість елементів у вхідному списку використавши
 # len функцію. Вернути результат.
 
-def average(list):
-    total = float(sum(list))/ float(len(list))
+def average(data):
+    total = float(sum(data))/ float(len(data))
     return total
 
 
@@ -33,27 +32,38 @@ def average(list):
 
 def get_letter_grade(score):
     if score >= 90:
-        return "A"
+        return 'A'
     elif score >= 80 and score < 90:
-        return "B"
+        return 'B'
     elif score >= 70 and score < 80:
-        return "C"
+        return 'C'
     elif score >= 60 and score < 70:
-        return "D"
+        return 'D'
     else:
-        return "F"
+        return 'F'
 
 # перевірити функцію get_letter_grade. Знайти середню оцінку по домашніх завданнях для кожного
 # студента і надрукувати. (Тобто спочатку викликати функцію average[‘homework’], і передати результат в
 # функцію get_letter_grade)
 
 
+for homework in students:
+    print(' {} avagare is: {}'.format(homework['name'],average(homework['homework'])))
+    print ('His grade is: {}'.format(get_letter_grade(average(homework['homework']))))
+
+
 # Знайти середню оцінку для всього класу. ( в числовому і буквенному виразі )
 
+av_homework  = 0
+av_quizzes = 0
+av_tests = 0
+for student in students:
 
-def get_class_average(students):
-    results = []
-    for i in students:
-        get_average(i)
-        results.append(get_average(i))
-    return average(results)
+    av_homework += average(student['homework'])
+
+    av_quizzes += average(student['quizzes'])
+    av_tests += average(student['tests'])
+print('Average homework is: {} grade is {}'.format((av_homework/3),get_letter_grade(av_homework/3)))
+print('Average quizzes is: {} grade is {}'.format((av_quizzes/3),get_letter_grade(av_quizzes/3)))
+print('Average tests is: {} grade is {}'.format((av_tests/3),get_letter_grade(av_tests/3)))
+
