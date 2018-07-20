@@ -8,15 +8,15 @@ import os
 def read_file():
     file_name = 'DDEfoe.txt'.format(os.path.dirname(__file__))
     output_file = 'chapters.txt'.format(os.path.dirname(__file__))
-    with open(file_name, 'r') as test_file:
+    with open(file_name, 'r', encoding='utf8') as test_file:
         with open(output_file, 'w') as out_file:
-            for line in test_file:
-                if 'CHAPTER' not in line:
-                    continue
-            else:
-                out_file.write(line)
+                for line in test_file:
 
-
+                        print(line)
+                        if 'CHAPTER' in line:
+                            out_file.write(line)
+                        else:
+                            continue
 
 
     return
